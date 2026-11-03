@@ -1,0 +1,30 @@
+<?php
+
+use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Schema;
+
+return new class extends Migration
+{
+    /**
+     * Run the migrations.
+     */
+    public function up()
+{
+    Schema::create('masjid_banks', function (Blueprint $table) {
+        $table->id();
+        $table->bigInteger('total_kas_fisik')->default(0); // Uang dari kotak amal fisik
+        $table->bigInteger('total_pengeluaran')->default(0); // Total uang yang sudah dipakai
+        $table->string('keterangan_pengeluaran')->nullable(); // Contoh: "Beli AC & Token Listrik"
+        $table->timestamps();
+    });
+}
+
+    /**
+     * Reverse the migrations.
+     */
+    public function down(): void
+    {
+        Schema::dropIfExists('masjid_banks');
+    }
+};
